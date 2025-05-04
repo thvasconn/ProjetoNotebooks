@@ -140,15 +140,15 @@ section.container .list .item.active {
 /* Estilos Específicos por Imagem */
 .item .car-img1 { 
     width: 50%; 
-    right: 570px; 
+    right: 600px; 
 }
 .item .car-img2 { 
     width: 55%; 
-    right: 570px; 
+    right: 600px; 
 }
 .item .car-img3 {
     width: 55%;
-    right: 570px;
+    right: 600px;
     top: 50%; /* Ajustado para consistência, use % se precisar variar muito */
     transform: translateY(-50%) scaleX(-1); /* Flip horizontal do container */
 }
