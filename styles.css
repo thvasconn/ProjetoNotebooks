@@ -1,0 +1,334 @@
+:root {
+    --bg-gradient-start: #1A1F38;
+    --bg-gradient-end: #0F0F1A;
+    --text-primary: #F5F5F7;
+    --text-secondary: #A6A6B2;
+    --text-dark: #000000;
+    --accent-color: #FF9500;
+    --indicator-active: #00E0FF;
+    --indicator-inactive: #005762;
+    --arrow-hover-bg: #00E0FF;
+    --button-hover-bg: #ff3cac; /* Cor do hover do botão .information */
+    --button-hover-text: #ffffff;
+
+    --font-primary: "Poppins", sans-serif;
+    --font-title: "League Gothic", sans-serif;
+
+    --transition-duration-fast: 0.5s;
+    --transition-duration-medium: 0.7s;
+    --transition-delay-base: 0.3s;
+    --transition-delay-h2: 0.5s;
+    --transition-delay-desc: 0.7s;
+    --transition-delay-btn: 0.9s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+body {
+    background-color: var(--text-dark);
+    color: var(--text-primary);
+    font-size: 1rem;
+    overflow: hidden; 
+    font-family: var(--font-primary);
+}
+
+/* Cabeçalho */
+header {
+    position: fixed;
+    width: 80vw;
+    left: 44%;
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-columns: auto 1fr; 
+    max-width: 1200px;
+    gap: clamp(20px, 5vw, 100px); 
+    align-items: center;
+    padding: 1rem 0; 
+    z-index: 2;
+}
+
+header img {
+    width: clamp(20rem, 20vw, 20rem); 
+    height: auto; 
+}
+
+header .navmenu ul {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: end;
+    gap: 1.5rem;
+}
+
+/* Seção Principal do Slider */
+section.container {
+    background: radial-gradient(circle, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Container da Lista de Slides */
+section.container .list {
+    position: relative;
+
+    width: 70vw;
+    height: 100%; /* Ocupa a altura da section */
+    margin: auto; /* Centraliza horizontalmente */
+    max-width: 1400px; /* Limite máximo */
+}
+
+/* Linha Decorativa (Opcional) */
+section.container .list::before {
+    content: '';
+    position: absolute;
+    height: 1px; /* Altura da linha */
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%); /* Centraliza verticalmente */
+    background-color: rgba(255, 255, 255, 0.2); /* Cor suave */
+    z-index: 0; /* Fica atrás do conteúdo */
+}
+
+/* --- Estilos dos Itens do Slide (Base e Animações) --- */
+section.container .list .item {
+    position: absolute;
+    inset: 0;
+    top: -60px;
+    opacity: 0;
+    z-index: 0; /* Itens inativos ficam abaixo */
+    pointer-events: none; /* Desabilita interação em itens inativos */
+
+    /* Estado Inicial (Fora da Tela) */
+    --calculation: 1; /* Pode ser controlado por JS se necessário (ex: -1 para prev) */
+    transform: translateX(calc(100vw * var(--calculation)));
+    transition: opacity var(--transition-duration-fast) ease-in-out,
+                transform var(--transition-duration-fast) ease-in-out;
+}
+
+section.container .list .item.active {
+    opacity: 1;
+    z-index: 1; /* Item ativo fica acima dos inativos */
+    transform: translateX(0);
+    pointer-events: auto; /* Habilita interação no item ativo */
+}
+
+
+/* --- Estilos das Imagens dos Carros --- */
+.car-img {
+    position: absolute;
+    top: 50%; /* Base para centralização vertical */
+    transform: translateY(-50%);
+    margin-left: auto; /* Parte da centralização com 'right' */
+    margin-right: auto; /* Parte da centralização com 'right' */
+}
+
+.car-img img {
+    display: block; /* Remove espaço extra abaixo da imagem */
+    width: 100%;
+    height: auto; /* Mantém proporção */
+    transform: rotate(0deg); /* Rotação inicial (inativa) */
+    transition: transform var(--transition-duration-medium) ease-in-out var(--transition-delay-base);
+}
+
+/* Estilos Específicos por Imagem */
+.item .car-img1 { 
+    width: 50%; 
+    right: 500px; 
+}
+.item .car-img2 { 
+    width: 55%; 
+    right: 500px; 
+}
+.item .car-img3 {
+    width: 55%;
+    right: 500px;
+    top: 50%; /* Ajustado para consistência, use % se precisar variar muito */
+    transform: translateY(-50%) scaleX(-1); /* Flip horizontal do container */
+}
+
+/* Rotação da Imagem no Item Ativo */
+.item.active .car-img1 img,
+.item.active .car-img2 img {
+    transform: rotate(-20deg);
+}
+.item.active .car-img3 img {
+    /* A imagem dentro do container flippado também precisa ser rotacionada */
+    /* O container já tem scaleX(-1) translateY(-50%) */
+    transform: rotate(20deg);
+}
+
+
+/* --- Estilos do Conteúdo (Textos e Botão) --- */
+.content {
+    position: absolute;
+    top: 50%;
+    right: 5%; /* Posicionamento relativo à direita */
+    width: 90%; /* Ocupa quase toda a largura disponível à direita */
+    max-width: 400px; /* Limite máximo de largura */
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Alinha itens à direita */
+    gap: 1.5rem; /* Espaçamento entre elementos */
+    text-align: right;
+    color: var(--text-primary);
+    /* Z-index não é necessário aqui, está dentro do .item */
+}
+
+.content .car-info {
+    font-weight: 700; /* Usar valor numérico é mais comum */
+    font-size: 0.9rem;
+    opacity: 0; /* Estado inicial animado */
+    transform: translateX(200px); /* Estado inicial animado */
+    transition: opacity var(--transition-duration-medium) ease-in-out var(--transition-delay-base),
+                transform var(--transition-duration-medium) ease-in-out var(--transition-delay-base);
+}
+
+.content h2 {
+    position: relative;
+    color: var(--text-primary);
+    font-size: clamp(1rem, 6vw, 5rem); /* Tamanho de fonte fluido */
+    line-height: 1.1;
+    font-family: var(--font-title);
+    word-break: break-word; /* Quebra palavras longas */
+    opacity: 0; /* Estado inicial animado */
+    transform: translateX(200px); /* Estado inicial animado */
+    transition: opacity var(--transition-duration-medium) ease-in-out var(--transition-delay-h2),
+                transform var(--transition-duration-medium) ease-in-out var(--transition-delay-h2);
+    
+}
+
+.content .description {
+    color: var(--text-secondary);
+    font-size: 0.8rem; /* Ligeiramente maior para legibilidade */
+    line-height: 1.5;
+    max-width: 100%; /* Garante que não ultrapasse o .content */
+    word-wrap: break-word;
+    opacity: 0; /* Estado inicial animado */
+    transform: translateX(200px); /* Estado inicial animado */
+    transition: opacity var(--transition-duration-medium) ease-in-out var(--transition-delay-desc),
+                transform var(--transition-duration-medium) ease-in-out var(--transition-delay-desc);
+}
+
+.content .information {
+    border-radius: 30px;
+    height: 40px; /* Ligeiramente maior */
+    width: auto; /* Largura automática baseada no padding */
+    padding: 0 1.5rem; /* Espaçamento interno */
+    border: 2px solid #2B2B3D; /* Removida borda sólida, ajuste se necessário */
+    background-color: var(--accent-color);
+    color: var(--text-dark);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: var(--font-title);
+    cursor: pointer;
+    opacity: 0; /* Estado inicial animado */
+    transform: translateX(200px); /* Estado inicial animado */
+    transition: opacity var(--transition-duration-medium) ease-in-out var(--transition-delay-btn),
+                transform var(--transition-duration-medium) ease-in-out var(--transition-delay-btn),
+                background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Adicionada transição para hover */
+    /* Z-index e pointer-events removidos daqui */
+}
+
+/* Estado Ativo dos Elementos de Conteúdo */
+.item.active .content .car-info,
+.item.active .content h2,
+.item.active .content .description,
+.item.active .content .information {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Hover do Botão "Saiba Mais" */
+.content .information:hover {
+    background-color: var(--button-hover-bg);
+    color: var(--button-hover-text);
+    transform: scale(1.05); /* Efeito de escala no hover */
+}
+
+
+/* --- Setas de Navegação --- */
+.arrows {
+    width: 75vw; /* Ajustado para ficar mais próximo das bordas do .list */
+    max-width: calc(1400px + 100px); /* Um pouco maior que o max-width do .list */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centraliza vertical e horizontalmente */
+    display: flex;
+    justify-content: space-between;
+    z-index: 2; /* Acima do item ativo */
+    pointer-events: none; /* Container não captura eventos, apenas botões */
+}
+
+.arrows button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.7); /* Fundo semi-transparente */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    pointer-events: auto; /* Botões capturam eventos */
+}
+
+.arrows button img {
+    width: 20px;
+    height: auto;
+}
+
+/* Imagem da seta "anterior" (esquerda) */
+.arrows button#prev img {
+    transform: scaleX(-1); /* Inverte a imagem da seta */
+}
+
+.arrows button:hover {
+    background-color: var(--arrow-hover-bg);
+}
+
+/* --- Indicadores de Slide (Número e Barras) --- */
+.indicators {
+    position: absolute;
+    bottom: 10%; /* Posicionado na parte inferior */
+    left: 10%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza horizontalmente */
+    gap: 1rem;
+    z-index: 0; /* No mesmo nível dos itens inativos */
+    width: auto; /* Largura baseada no conteúdo */
+}
+
+.indicators .number {
+    font-size: clamp(3em, 8vw, 5em); /* Tamanho responsivo */
+    font-family: var(--font-title);
+    line-height: 1;
+}
+
+.indicators ul {
+    display: flex;
+    gap: 10px;
+}
+
+.indicators ul li {
+    width: 50px;
+    height: 5px;
+    background-color: var(--indicator-inactive);
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.indicators ul li.active {
+    background-color: var(--indicator-active);
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Notebooks</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <img src="./img/logo2.png" alt="Logo da Empresa">
+        <nav class="navmenu">
+            <ul>
+                <li>Home</li>
+                <li>Carros</li>
+                <li>Fale conosco</li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="container">
+        <div class="list">
+            <div class="item active">
+                <div class="car-img car-img1"> <img src="./img/note1.png" alt="Porsche 911 Turbo"> </div>
+                <div class="content">
+                    <p class="car-info">Desempenho insano</p>
+                    <h2>ASUS ROG Zephyrus Duo 15</h2>
+                    <p class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro esse,
+                        architecto magnam ex nihil laboriosam alias dolores debitis fugiat modi voluptate rem odit
+                        pariatur maiores incidunt ut officia cum rerum.</p> <button class="information">Saiba
+                        mais</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="car-img car-img2">
+                    <img src="./img/note2.png" alt="Ferrari Conversível">
+                </div>
+                <div class="content">
+                    <p class="car-info">Hardware de elite</p>
+                    <h2>ASUS ROG FLOW Z13</h2>
+                    <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa accusamus
+                        aliquid, nesciunt eius explicabo itaque dicta? Doloribus nostrum, facilis est, qui magnam ipsam
+                        et, aut ratione dolorem blanditiis ipsa voluptatibus.</p>
+                    <button class="information">Saiba mais</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="car-img car-img3">
+                    <img src="./img/note3.png" alt="Lamborghini 2015">
+                </div>
+                <div class="content">
+                    <p class="car-info">Alta performance garantida</p>
+                    <h2>ASUS ROG Strix Scar II</h2>
+                    <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores enim
+                        excepturi totam voluptas quos quod. Facere iste qui repellendus modi est. Repellendus modi velit
+                        quod asperiores aperiam, ipsa explicabo itaque!</p>
+                    <button class="information">Saiba mais</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="arrows">
+            <button id="prev"><img src="./img/arrow.png" alt="Slide Anterior"></button>
+            <button id="next"><img src="./img/arrow.png" alt="Próximo Slide"></button>
+        </div>
+
+        <div class="indicators">
+            <div class="number">01</div>
+            <ul>
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </section>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
